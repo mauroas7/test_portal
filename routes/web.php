@@ -15,6 +15,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/panel-director', function () {
+        // Barrera de seguridad
+        if (Auth::user()->role !== 'director') {
+            abort(403, 'Acceso denegado: Área exclusiva de Dirección.');
+        }
+        
+        return view('director.dashboard');
+    })->name('director.panel');
 });
 
 require __DIR__.'/auth.php';

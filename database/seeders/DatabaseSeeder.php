@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+// use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+    // Esto silencia algunos eventos al crear datos.
     use WithoutModelEvents;
 
     /**
@@ -15,11 +16,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Le decimos a Laravel que vaya a ejecutar el archivo DirectorSeeder
+        $this->call([
+            DirectorSeeder::class,
         ]);
     }
 }

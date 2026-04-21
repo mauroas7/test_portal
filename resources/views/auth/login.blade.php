@@ -4,51 +4,58 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Consultorio MOVIL - Ingreso</title>
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    
+    <title>Hospital Universitario - Ingreso</title>
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon_color.png') }}?v=2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans antialiased" style="background-color: #E8D4C0;">
+
+<body class="font-sans antialiased bg-gray-50">
     <div class="min-h-screen flex flex-col justify-center items-center px-4 py-12">
         <div style="width: 100%; max-width: 500px;">
-            <!-- Sección de Logo -->
-            <div class="text-center mb-12" style="text-align: center;">
-                <div style="color: #D4A574; font-size: 36px; font-weight: 600; letter-spacing: -1px; margin-bottom: 4px;">
-                    Consultorio
-                </div>
-                <div style="color: #5A5A5A; font-size: 20px; font-weight: 600; letter-spacing: 2px;">MOVIL.net</div>
+            
+            <!-- Logo -->
+            <div class="flex justify-center items-center mb-8">
+                <img 
+                    src="{{ asset('img/Logo HU Uso Diario.svg') }}" 
+                    alt="Logo Hospital Universitario" 
+                    class="w-64 h-auto hover:opacity-90 transition" 
+                >
             </div>
 
-            <div style="border: 2px solid #D4A574; border-radius: 12px; padding: 32px; background-color: rgba(255,255,255,0.05);">
+            <!-- Contenedor Principal -->
+            <div class="bg-white shadow-xl" style="border-top: 4px solid #003764; border-radius: 12px; padding: 40px;">
             
-            <!-- Sección de Título -->
-            <h1 class="text-center" style="color: #4A4A4A; font-size: 32px; font-weight: 700; margin-bottom: 10px;">
-                Ingreso pacientes
-            </h1>
+                <!-- Titulo -->
+                <h1 class="text-center" style="color: #003764; font-size: 28px; font-weight: 700; margin-bottom: 8px;">
+                    Ingreso pacientes
+                </h1>
 
-            <!-- Sección de Subtítulo -->
-            <p class="text-center" style="color: #8B8B8B; font-size: 14px; margin-bottom: 28px;">
-                Si eres parte de un Equipo médico, ingresa <a href="#" style="color: #D4A574;" class="font-semibold">aquí</a>
-            </p>
+                <!-- Subtitulo -->
+                <p class="text-center" style="color: #59595b; font-size: 14px; margin-bottom: 32px;">
+                    Si sos parte del Equipo Médico, ingresá <a href="#" style="color: #C7A36E;" class="font-semibold hover:underline">aquí</a>
+                </p>
 
-            <!-- Formulario -->
-            <div style="border: 1px solid #D4A574; border-radius: 8px; padding: 24px;">
+                <!-- Formulario -->
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
-                    <!-- Poner mail  -->
-                    <div class="mb-4 relative">
+                    <!-- Colocar mail -->
+                    <div class="mb-5 relative">
                         <input 
                             type="email" 
                             id="email"
                             name="email" 
                             value="{{ old('email') }}"
-                            placeholder="test@gmail.com"
+                            placeholder="paciente@hospital.com"
                             required 
                             autofocus 
-                            class="w-full px-5 py-4 rounded-lg border-0 focus:outline-none focus:ring-0 transition"
-                            style="background-color: #F5F0EB; color: #4A4A4A; font-size: 14px;"
+                            class="w-full px-5 py-3 rounded-lg border focus:ring-2 transition"
+                            style="border-color: #C7A36E; background-color: #ffffff; color: #59595b; font-size: 15px;"
                         >
                     </div>
 
@@ -60,31 +67,31 @@
                             name="password" 
                             placeholder="••••••••"
                             required 
-                            class="w-full px-5 py-4 rounded-lg border-0 focus:outline-none focus:ring-0 transition"
-                            style="background-color: #F5F0EB; color: #4A4A4A; font-size: 16px; letter-spacing: 3px;"
+                            class="w-full px-5 py-3 rounded-lg border focus:ring-2 transition"
+                            style="border-color: #C7A36E; background-color: #ffffff; color: #59595b; font-size: 15px; letter-spacing: 2px;"
                         >
                     </div>
 
                     <!-- Link por contraseña olvidada -->
-                    <div class="text-right mb-4">
+                    <div class="text-right mb-5">
                         @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}" style="color: #D4A574;" class="text-sm font-medium">
-                                ¿Has olvidado la contraseña?
+                            <a href="{{ route('password.request') }}" style="color: #C7A36E;" class="text-sm font-medium hover:underline">
+                                ¿Has olvidado tu contraseña?
                             </a>
                         @endif
                     </div>
 
-                    <!-- Recordarme -->
-                    <div class="mb-4 flex items-center">
+                    <!-- Recordar datos de login -->
+                    <div class="mb-6 flex items-center">
                         <input 
                             type="checkbox" 
                             id="remember_me" 
                             name="remember"
                             class="rounded w-4 h-4 cursor-pointer"
-                            style="accent-color: #D4A574; border-color: #D0D0D0;"
+                            style="accent-color: #003764; border-color: #C7A36E;"
                         >
-                        <label for="remember_me" class="ms-3 text-sm" style="color: #4A4A4A;">
-                            Recordarme
+                        <label for="remember_me" class="ms-3 text-sm font-medium" style="color: #59595b;">
+                            Recordar mis datos
                         </label>
                     </div>
 
@@ -103,27 +110,24 @@
                     <!-- Botón de envío -->
                     <button 
                         type="submit" 
-                        class="w-full py-3 rounded-full font-bold text-white text-lg transition hover:opacity-90 mb-8 shadow-md"
-                        style="background-color: #E97F3A;"
+                        class="w-full py-3 rounded-lg font-bold text-white text-lg transition hover:shadow-lg mb-8"
+                        style="background-color: #003764;"
                     >
-                        Ingresar
+                        Ingresar al Portal
                     </button>
                 </form>
-            </div>
 
-            <br>
-
-            <!-- Links -->
-            <div class="space-y-4 text-center">
-                <p style="color: #8B8B8B;" class="text-sm">
-                    ¿Quieres usar ConsultorioMOVIL? 
-                    <a href="{{ route('register') }}" style="color: #D4A574;" class="font-semibold">Click aquí</a>
-                </p>
-                <p style="color: #8B8B8B;" class="text-sm">
-                    Conozca ConsultorioMOVIL haciendo 
-                    <a href="#" style="color: #D4A574;" class="font-semibold">Click aquí</a>
-                </p>
-            </div>
+                <!-- Links inferiores -->
+                <div class="space-y-3 text-center border-t pt-6" style="border-color: #f3f4f6;">
+                    <p style="color: #59595b;" class="text-sm">
+                        ¿Primera vez en el hospital? 
+                        <a href="{{ route('register') }}" style="color: #003764;" class="font-bold hover:underline">Creá tu cuenta</a>
+                    </p>
+                    <p style="color: #59595b;" class="text-sm">
+                        Conocé más sobre nuestros servicios haciendo 
+                        <a href="#" style="color: #C7A36E;" class="font-semibold hover:underline">click aquí</a>
+                    </p>
+                </div>
 
             </div>
         </div>
