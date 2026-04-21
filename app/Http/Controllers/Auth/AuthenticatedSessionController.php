@@ -25,10 +25,19 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // Lógica del "Semáforo" de Roles
+        $url = '/';
+        if ($request->user()->role === 'director') {
+            $url = '/panel-director';
+        } elseif ($request->user()->role === 'medico') {
+            $url = '/agenda-medica';
+        } elseif ($request->user()->role === 'paciente') {
+            $url = '/dashboard'; // El portal del paciente
+        }
+
+        return redirect()->intended($url);
     }
 
     /**
