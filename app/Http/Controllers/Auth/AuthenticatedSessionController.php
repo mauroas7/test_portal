@@ -27,17 +27,18 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
         $request->session()->regenerate();
 
-        // Lógica del "Semáforo" de Roles
-        $url = '/';
+        // ==========================================
+        // LÓGICA DEL "SEMÁFORO" OPTIMIZADA
+        // ==========================================
+        
+        // 1. Si es el Director, va a su panel de administración
         if ($request->user()->role === 'director') {
-            $url = '/panel-director';
-        } elseif ($request->user()->role === 'medico') {
-            $url = '/agenda-medica';
-        } elseif ($request->user()->role === 'paciente') {
-            $url = '/dashboard'; // El portal del paciente
+            return redirect()->intended(route('director.panel'));
         }
 
-        return redirect()->intended($url);
+        // 2. Por defecto (Pacientes), van al portal principal
+        // Usamos absolute: false para mantener las URLs relativas
+        return redirect()->intended(route('dashboard', absolute: false));
     }
 
     /**
