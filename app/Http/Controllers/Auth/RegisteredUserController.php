@@ -28,17 +28,31 @@ class RegisteredUserController extends Controller
      *
      * @throws ValidationException
      */
+    /**
+     * Handle an incoming registration request.
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function store(Request $request): RedirectResponse
     {
+        // Validamos que los datos ingresados por el usuario cumplan con los requisitos
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'], 
+            'dni' => ['required', 'string', 'max:20', 'unique:'.User::class],
+            'phone' => ['required', 'string', 'max:30'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
+        // 2. Creamos el nuevo usuario en la base de datos con los datos validados
+       $user = User::create([
             'name' => $request->name,
+            'last_name' => $request->last_name, 
+            'dni' => $request->dni, 
+            'phone' => $request->phone, 
             'email' => $request->email,
+            'role' => 'paciente',
             'password' => Hash::make($request->password),
         ]);
 
@@ -46,6 +60,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // Redirige al dashboard del paciente una vez registrado
+        return redirect(route('dashboard', absolute: false)); 
     }
 }
