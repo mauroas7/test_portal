@@ -15,55 +15,53 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased" style="background-color: #003764;">
+<body class="font-sans antialiased bg-gray-100"> {{-- Cambié el fondo exterior a un gris suave para que la tarjeta resalte --}}
     <div class="min-h-screen flex flex-col justify-center items-center px-4 py-12">
-        <div class="w-full max-w-4xl bg-white shadow-2xl flex flex-col md:flex-row overflow-hidden" style="border-radius: 24px;">
+        <div class="w-full max-w-5xl bg-white shadow-[0_20px_60px_rgba(0,0,0,0.1)] flex flex-col md:flex-row overflow-hidden" style="border-radius: 32px;">
             
-            <!-- Panel izquierdo -->
-            <div class="hidden md:flex md:w-5/12 bg-gray-50 flex-col justify-between p-10 lg:p-12 border-r border-gray-100 relative">
-                <div class="absolute top-0 right-0 w-24 h-24 bg-[#C7A36E] opacity-10 rounded-bl-full"></div>
+            <div class="hidden md:flex md:w-5/12 flex-col justify-between p-12 relative overflow-hidden" style="background-color: #003764;">
+                {{-- Círculo decorativo sutil en dorado --}}
+                <div class="absolute top-[-10%] right-[-10%] w-64 h-64 bg-[#C7A36E] opacity-10 rounded-full"></div>
 
-                <div>
-                    <img src="{{ asset('img/Logo HU Uso Diario.svg') }}" alt="Logo Hospital Universitario" class="w-full h-auto mb-10">
+                <div class="relative z-10">
+                    {{-- Logo en blanco/negativo si es posible, o el original --}}
+                    <img src="{{ asset('img/Logo HU Uso Diario.svg') }}" alt="Logo Hospital Universitario" class="w-48 h-auto mb-12 brightness-0 invert">
                     
-                    <h2 class="text-3xl font-black mb-4 leading-tight" style="color: #003764;">
-                        A,<br>a.
+                    <h2 class="text-4xl font-black mb-6 leading-tight text-white">
+                        Bienvenido al <br><span style="color: #C7A36E;">Portal de Pacientes.</span>
                     </h2>
-                    <p class="text-sm font-medium text-gray-500 leading-relaxed">
-                        Descripción.
+                    <p class="text-sm font-medium text-blue-100 leading-relaxed max-w-xs">
+                        Acceda para coordinar sus turnos, consultar resultados y gestionar su salud de manera integral.
                     </p>
                 </div>
                 
-                <div class="space-y-4">
+                <div class="relative z-10 space-y-4">
                     <div style="height: 4px; width: 40px; background-color: #C7A36E; border-radius: 2px;"></div>
-                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">
+                    <p class="text-[10px] font-black text-blue-200 uppercase tracking-[0.3em]">
                         Portal de Pacientes
                     </p>
                 </div>
             </div>
 
-            <!-- Panel derecho -->
-            <div class="w-full md:w-7/12 p-8 sm:p-12 lg:p-16 flex flex-col justify-center bg-white relative">
-                <div class="md:hidden flex justify-center mb-8">
+            <div class="w-full md:w-7/12 p-8 sm:p-12 lg:p-20 flex flex-col justify-center bg-white relative">
+                <div class="md:hidden flex justify-center mb-10">
                     <img src="{{ asset('img/Logo HU Uso Diario.svg') }}" alt="Logo" class="w-48 h-auto">
                 </div>
 
-                <!-- Encabezado del Formulario -->
-                <div class="mb-10">
-                    <h1 class="font-black text-3xl mb-2" style="color: #003764;">Iniciar Sesión</h1>
-                    <p class="font-medium" style="color: #59595b; font-size: 14px;">
-                        Si sos parte del Equipo Médico, ingresá 
-                        <a href="{{ route('doctor.login') }}" style="color: #C7A36E;" class="font-bold hover:underline">aquí</a>.
+                <div class="mb-12">
+                    <h1 class="font-black text-4xl mb-3" style="color: #003764;">Iniciar Sesión</h1>
+                    <p class="font-medium text-gray-500" style="font-size: 15px;">
+                        ¿Es profesional de la salud? 
+                        <a href="{{ route('doctor.login') }}" style="color: #C7A36E;" class="font-bold hover:underline">Ingresar aquí</a>
                     </p>
                 </div>
 
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
-                    <!-- Inputs del formulario -->
-                    <div class="space-y-6 mb-8">
+                    <div class="space-y-6 mb-10">
                         <div>
-                            <label for="email" class="block text-xs font-bold uppercase tracking-wider mb-2 ml-1" style="color: #003764;">Correo Electrónico</label>
+                            <label for="email" class="block text-[10px] font-black uppercase tracking-[0.2em] mb-3 ml-1" style="color: #59595b;">Correo Electrónico</label>
                             <input 
                                 type="email" 
                                 id="email"
@@ -72,14 +70,14 @@
                                 placeholder="paciente@hospital.com"
                                 required 
                                 autofocus 
-                                class="w-full px-5 py-4 rounded-xl border-transparent bg-gray-100 focus:bg-white focus:border-[#C7A36E] focus:ring-2 focus:ring-[#C7A36E]/20 transition font-medium"
-                                style="color: #59595b; font-size: 15px;"
+                                class="w-full px-6 py-4 rounded-2xl border-none bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#C7A36E]/30 transition font-bold text-[#003764]"
+                                style="font-size: 15px;"
                             >
                         </div>
 
                         <div>
-                            <div class="flex justify-between items-center mb-2 ml-1">
-                                <label for="password" class="block text-xs font-bold uppercase tracking-wider" style="color: #003764;">Contraseña</label>
+                            <div class="flex justify-between items-center mb-3 ml-1">
+                                <label for="password" class="block text-[10px] font-black uppercase tracking-[0.2em]" style="color: #59595b;">Contraseña</label>
                                 @if (Route::has('password.request'))
                                     <a href="{{ route('password.request') }}" style="color: #C7A36E;" class="text-xs font-bold hover:underline">
                                         ¿La olvidaste?
@@ -92,28 +90,29 @@
                                 name="password" 
                                 placeholder="••••••••"
                                 required 
-                                class="w-full px-5 py-4 rounded-xl border-transparent bg-gray-100 focus:bg-white focus:border-[#C7A36E] focus:ring-2 focus:ring-[#C7A36E]/20 transition font-medium tracking-widest"
-                                style="color: #59595b; font-size: 15px;"
+                                class="w-full px-6 py-4 rounded-2xl border-none bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#C7A36E]/30 transition font-bold tracking-widest text-[#003764]"
+                                style="font-size: 15px;"
                             >
                         </div>
                     </div>
 
-                    <div class="mb-8 flex items-center">
-                        <input 
-                            type="checkbox" 
-                            id="remember_me" 
-                            name="remember"
-                            class="rounded w-4 h-4 cursor-pointer border-gray-300 text-[#003764] focus:ring-[#003764]"
-                        >
-                        <label for="remember_me" class="ms-3 text-sm font-medium" style="color: #59595b;">
-                            Mantener sesión iniciada
-                        </label>
+                    <div class="mb-10 flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input 
+                                type="checkbox" 
+                                id="remember_me" 
+                                name="remember"
+                                class="rounded-md w-5 h-5 cursor-pointer border-gray-200 text-[#003764] focus:ring-[#003764]"
+                            >
+                            <label for="remember_me" class="ms-3 text-sm font-bold text-gray-400">
+                                Mantener sesión
+                            </label>
+                        </div>
                     </div>
 
                     @if ($errors->any())
-                        <div class="mb-8 p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg">
-                            <p class="text-sm text-red-800 font-bold mb-1">Error de autenticación:</p>
-                            <ul class="list-disc list-inside text-sm text-red-700">
+                        <div class="mb-8 p-5 bg-red-50 border-l-4 border-red-500 rounded-2xl">
+                            <ul class="text-sm text-red-700 font-bold">
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
@@ -123,28 +122,26 @@
 
                     <button 
                         type="submit" 
-                        class="w-full py-4 rounded-xl font-bold text-white text-lg transition-all hover:bg-blue-900 shadow-md hover:shadow-xl active:scale-[0.98]"
+                        class="w-full py-5 rounded-2xl font-black text-white text-sm uppercase tracking-widest transition-all hover:brightness-110 shadow-lg hover:shadow-2xl active:scale-[0.98]"
                         style="background-color: #003764;"
                     >
                         Ingresar al Portal
                     </button>
                 </form>
 
-                <div class="mt-8 text-center">
-                    <p style="color: #59595b;" class="text-sm font-medium">
-                        ¿Aún no sos paciente del hospital? 
-                        <a href="{{ route('register') }}" style="color: #003764;" class="font-bold hover:underline">Creá tu cuenta</a>
+                <div class="mt-10 text-center">
+                    <p style="color: #59595b;" class="text-sm font-bold">
+                        ¿No tiene una cuenta? 
+                        <a href="{{ route('register') }}" style="color: #003764;" class="font-black hover:underline">Regístrese</a>
                     </p>
                 </div>
 
             </div>
         </div>
         
-        <!-- Copyright (afuera de la tarjeta) -->
-        <p class="text-center mt-8 text-white/50 text-xs font-medium">
-            © 2026 Hospital Universitario | UNCuyo
+        <p class="text-center mt-10 text-gray-400 text-[10px] font-black uppercase tracking-[0.3em]">
+            © 2026 Hospital Universitario | Mendoza, Argentina
         </p>
-
     </div>
 </body>
 </html>

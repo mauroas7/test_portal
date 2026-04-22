@@ -22,23 +22,18 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
+    // En el método store de AuthenticatedSessionController
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
         $request->session()->regenerate();
 
-        // ==========================================
-        // LÓGICA DEL "SEMÁFORO" OPTIMIZADA
-        // ==========================================
-        
-        // 1. Si es el Director, va a su panel de administración
+        // Lógica de redirección por Rol
         if ($request->user()->role === 'director') {
-            return redirect()->intended(route('director.panel'));
+            return redirect()->route('director.dashboard');
         }
 
-        // 2. Por defecto (Pacientes), van al portal principal
-        // Usamos absolute: false para mantener las URLs relativas
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(route('dashboard'));
     }
 
     /**

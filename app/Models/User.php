@@ -14,11 +14,12 @@ class User extends Authenticatable
      * Los atributos que son asignables masivamente.
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'role',
-    ];
+        'name', 
+        'last_name', 
+        'email', 
+        'password', 
+        'role'
+        ];
 
     protected $hidden = [
         'password',

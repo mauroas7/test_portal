@@ -66,8 +66,20 @@
         ],
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
+        ],
+        "db:empty": "php artisan migrate:fresh",
+        "db:seed-base": "php artisan db:seed",
+        "db:seed-fake": "php artisan db:seed --class=FakeDataSeeder",
+        "db:datosBase": [
+            "@db:empty",
+            "@db:seed-base"
+        ],
+        "db:datosPrueba": [
+            "@db:datosBase",
+            "@db:seed-fake"
         ]
     },
+
     "extra": {
         "laravel": {
             "dont-discover": []

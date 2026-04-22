@@ -11,10 +11,16 @@ class SpecialtySeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-{
-    $especialidades = ['Cardiología', 'Pediatría', 'Traumatología', 'Dermatología'];
-    foreach ($especialidades as $nombre) {
-        \App\Models\Specialty::create(['name' => $nombre]);
+    {
+        $especialidades = [
+            'Cardiología', 'Pediatría', 'Dermatología', 'Neurología', 'Traumatología'
+        ];
+
+        foreach ($especialidades as $especialidad) {
+            // firstOrCreate busca si ya existe. Si existe, no hace nada. Si no, lo crea.
+            \App\Models\Specialty::firstOrCreate([
+                'name' => $especialidad
+            ]);
+        }
     }
-}
 }

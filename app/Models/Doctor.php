@@ -11,10 +11,9 @@ class Doctor extends Model
 
     protected $fillable = [
         'user_id', 
-        'last_name', 
         'matricula', 
         'specialty_id'
-    ];
+        ];
 
     // =========================================================
     // RELACIONES
@@ -23,8 +22,7 @@ class Doctor extends Model
     /**
      * Relación con el Usuario (La cuenta de acceso).
      */
-    public function user()
-    {
+    public function user() {
         return $this->belongsTo(User::class);
     }
 
