@@ -20,7 +20,7 @@
         <div class="w-full max-w-5xl bg-white shadow-[0_20px_60px_rgba(0,0,0,0.1)] flex flex-col md:flex-row overflow-hidden" style="border-radius: 32px;">
             
             <div class="hidden md:flex md:w-5/12 flex-col justify-between p-12 relative overflow-hidden" style="background-color: #003764;">
-                {{-- Círculo decorativo sutil en dorado --}}
+                {{-- Círculo decorativo en dorado --}}
                 <div class="absolute top-[-10%] right-[-10%] w-64 h-64 bg-[#C7A36E] opacity-10 rounded-full"></div>
 
                 <div class="relative z-10">
@@ -61,29 +61,33 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-[10px] font-black uppercase tracking-[0.2em] mb-2 ml-1" style="color: #59595b;">Nombre/s</label>
-                                <input type="text" name="name" value="{{ old('name') }}" placeholder="Ej: Juan Pablo" required 
-                                       class="w-full px-5 py-3 rounded-2xl border-none bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#C7A36E]/30 transition font-bold text-[#003764]" style="font-size: 14px;">
+                                <input type="text" name="name" value="{{ old('name') }}" placeholder="Ingrese su nombre" required 
+                                    oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')"
+                                    class="w-full px-5 py-3 rounded-2xl border-none bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#C7A36E]/30 transition font-bold text-[#003764]" style="font-size: 14px;">
                                 @error('name') <p class="text-red-600 text-[10px] mt-1 ml-1 font-bold">{{ $message }}</p> @enderror
                             </div>
                             <div>
                                 <label class="block text-[10px] font-black uppercase tracking-[0.2em] mb-2 ml-1" style="color: #59595b;">Apellido/s</label>
-                                <input type="text" name="last_name" value="{{ old('last_name') }}" placeholder="Ej: Pérez" required 
-                                       class="w-full px-5 py-3 rounded-2xl border-none bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#C7A36E]/30 transition font-bold text-[#003764]" style="font-size: 14px;">
+                                <input type="text" name="last_name" value="{{ old('last_name') }}" placeholder="Ingrese su apellido" required 
+                                    oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')"
+                                    class="w-full px-5 py-3 rounded-2xl border-none bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#C7A36E]/30 transition font-bold text-[#003764]" style="font-size: 14px;">
                                 @error('last_name') <p class="text-red-600 text-[10px] mt-1 ml-1 font-bold">{{ $message }}</p> @enderror
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-[10px] font-black uppercase tracking-[0.2em] mb-2 ml-1" style="color: #59595b;">DNI</label>
+                                <label class="block text-[10px] font-black uppercase tracking-[0.2em] mb-2 ml-1" style="color: #59595b;">Número de Documento (DNI)</label>
                                 <input type="text" name="dni" value="{{ old('dni') }}" placeholder="Sin puntos" required 
-                                       class="w-full px-5 py-3 rounded-2xl border-none bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#C7A36E]/30 transition font-bold text-[#003764]" style="font-size: 14px;">
+                                    inputmode="numeric" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                    class="w-full px-5 py-3 rounded-2xl border-none bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#C7A36E]/30 transition font-bold text-[#003764]" style="font-size: 14px;">
                                 @error('dni') <p class="text-red-600 text-[10px] mt-1 ml-1 font-bold">{{ $message }}</p> @enderror
                             </div>
                             <div>
                                 <label class="block text-[10px] font-black uppercase tracking-[0.2em] mb-2 ml-1" style="color: #59595b;">Celular</label>
-                                <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="261..." required 
-                                       class="w-full px-5 py-3 rounded-2xl border-none bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#C7A36E]/30 transition font-bold text-[#003764]" style="font-size: 14px;">
+                                <input type="text" name="phone" value="{{ old('phone') }}" placeholder="2615555555" required 
+                                    inputmode="numeric" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                    class="w-full px-5 py-3 rounded-2xl border-none bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#C7A36E]/30 transition font-bold text-[#003764]" style="font-size: 14px;">
                                 @error('phone') <p class="text-red-600 text-[10px] mt-1 ml-1 font-bold">{{ $message }}</p> @enderror
                             </div>
                         </div>
@@ -103,7 +107,7 @@
                                 @error('password') <p class="text-red-600 text-[10px] mt-1 ml-1 font-bold">{{ $message }}</p> @enderror
                             </div>
                             <div>
-                                <label class="block text-[10px] font-black uppercase tracking-[0.2em] mb-2 ml-1" style="color: #59595b;">Repetir Clave</label>
+                                <label class="block text-[10px] font-black uppercase tracking-[0.2em] mb-2 ml-1" style="color: #59595b;">Confirmar Contraseña</label>
                                 <input type="password" name="password_confirmation" required placeholder="••••••••" 
                                        class="w-full px-5 py-3 rounded-2xl border-none bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#C7A36E]/30 transition font-bold tracking-widest text-[#003764]" style="font-size: 14px;">
                             </div>
@@ -120,7 +124,7 @@
                 <div class="mt-10 text-center">
                     <p style="color: #59595b;" class="text-sm font-bold">
                         ¿Ya tiene una cuenta? 
-                        <a href="{{ route('login') }}" style="color: #003764;" class="font-black hover:underline">Inicie sesión aquí</a>
+                        <a href="{{ route('login') }}" style="color: #003764;" class="font-black hover:underline">Iniciar sesión</a>
                     </p>
                 </div>
             </div>

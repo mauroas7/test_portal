@@ -15,16 +15,15 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased bg-gray-100"> {{-- Cambié el fondo exterior a un gris suave para que la tarjeta resalte --}}
+<body class="font-sans antialiased bg-gray-100">
     <div class="min-h-screen flex flex-col justify-center items-center px-4 py-12">
         <div class="w-full max-w-5xl bg-white shadow-[0_20px_60px_rgba(0,0,0,0.1)] flex flex-col md:flex-row overflow-hidden" style="border-radius: 32px;">
             
             <div class="hidden md:flex md:w-5/12 flex-col justify-between p-12 relative overflow-hidden" style="background-color: #003764;">
-                {{-- Círculo decorativo sutil en dorado --}}
+                {{-- Círculo decorativo en dorado --}}
                 <div class="absolute top-[-10%] right-[-10%] w-64 h-64 bg-[#C7A36E] opacity-10 rounded-full"></div>
 
                 <div class="relative z-10">
-                    {{-- Logo en blanco/negativo si es posible, o el original --}}
                     <img src="{{ asset('img/Logo HU Uso Diario.svg') }}" alt="Logo Hospital Universitario" class="w-48 h-auto mb-12 brightness-0 invert">
                     
                     <h2 class="text-4xl font-black mb-6 leading-tight text-white">
@@ -51,7 +50,7 @@
                 <div class="mb-12">
                     <h1 class="font-black text-4xl mb-3" style="color: #003764;">Iniciar Sesión</h1>
                     <p class="font-medium text-gray-500" style="font-size: 15px;">
-                        ¿Es profesional de la salud? 
+                        ¿Sos parte de un equipo médico? 
                         <a href="{{ route('doctor.login') }}" style="color: #C7A36E;" class="font-bold hover:underline">Ingresar aquí</a>
                     </p>
                 </div>
@@ -132,7 +131,7 @@
                 <div class="mt-10 text-center">
                     <p style="color: #59595b;" class="text-sm font-bold">
                         ¿No tiene una cuenta? 
-                        <a href="{{ route('register') }}" style="color: #003764;" class="font-black hover:underline">Regístrese</a>
+                        <a href="{{ route('register') }}" style="color: #003764;" class="font-black hover:underline">Registrarse</a>
                     </p>
                 </div>
 
