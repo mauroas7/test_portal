@@ -45,6 +45,10 @@ class RegisteredUserController extends Controller
             'phone' => ['required', 'string', 'max:30'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'birth_date' => ['required', 'date'],
+            'gender' => ['required', 'in:masculino,femenino'],
+            'health_insurance' => ['required', 'string'],
+            'health_plan' => ['required', 'string'],
         ]);
 
         // 2. EJECUCIÓN ATÓMICA
@@ -63,6 +67,10 @@ class RegisteredUserController extends Controller
             $user->patient()->create([
                 'dni'   => $request->dni,
                 'phone' => $request->phone,
+                'birth_date'       => $request->birth_date,
+                'gender'           => $request->gender,
+                'health_insurance' => $request->health_insurance,
+                'health_plan'      => $request->health_plan,
             ]);
 
             return $user;

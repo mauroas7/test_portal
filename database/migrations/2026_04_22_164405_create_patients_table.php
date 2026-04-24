@@ -16,6 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('dni')->unique();
             $table->string('phone');
+            $table->date('birth_date'); 
+            $table->enum('gender', ['masculino', 'femenino']); 
+            $table->string('health_insurance'); // Obra Social
+            $table->string('health_plan');      // Plan
             $table->timestamps();
         });
     }

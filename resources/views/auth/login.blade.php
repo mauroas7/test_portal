@@ -37,7 +37,7 @@
                 <div class="relative z-10 space-y-4">
                     <div style="height: 4px; width: 40px; background-color: #C7A36E; border-radius: 2px;"></div>
                     <p class="text-[10px] font-black text-blue-200 uppercase tracking-[0.3em]">
-                        Portal de Pacientes
+                        Portal de Ingreso
                     </p>
                 </div>
             </div>
