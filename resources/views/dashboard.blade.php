@@ -15,15 +15,15 @@
                 <nav class="flex-1 overflow-y-auto px-4 py-6 space-y-1">
                     <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4 mb-4">Menú Principal</p>
                     <template x-for="(item, id) in {
-                        agenda: { label: 'Mi agenda', icon: 'calendar_month' },
-                        BBB: { label: 'BBB', icon: 'stethoscope' },
-                        CCC: { label: 'CCC', icon: 'event' },
-                        DDD: { label: 'DDD', icon: 'group' },
-                        EEE: { label: 'EEE', icon: 'medication' },
-                        FFF: { label: 'FFF', icon: 'science' },
-                        GGG: { label: 'GGG', icon: 'cloud_upload' },
-                        HHH: { label: 'HHH', icon: 'library_books' },
-                        III: { label: 'III', icon: 'edit_note' }
+                        agenda: { label: 'Agenda', icon: 'calendar_month' },
+                        consultas: { label: 'Consultas', icon: 'stethoscope' },
+                        visitas: { label: 'Visitas', icon: 'event' },
+                        medicos: { label: 'Médicos', icon: 'group' },
+                        medicaciones: { label: 'Medicaciones', icon: 'medication' },
+                        resultados: { label: 'Resultados', icon: 'science' },
+                        archivos: { label: 'Archivos', icon: 'cloud_upload' },
+                        biblioteca: { label: 'Biblioteca médica', icon: 'library_books' },
+                        notas: { label: 'Notas personales', icon: 'edit_note' }
                     }">
                         <button @click="tab = id" 
                                 :class="tab === id ? 'bg-white text-[#003764] shadow-sm border-l-4 border-[#C7A36E]' : 'text-gray-500 hover:bg-gray-100 border-l-4 border-transparent'"
@@ -110,7 +110,7 @@
                             <div class="flex-1">
                                 <div class="mb-8">
                                     <h1 class="font-black text-4xl mb-2" style="color: #003764;">Mi agenda médica</h1>
-                                    <p class="text-base font-medium text-gray-500">Bienvenido.</p>
+                                    <p class="text-base font-medium text-gray-500">Tus temas médicos personales y familiares.</p>
                                 </div>
 
                                 <div class="flex flex-wrap gap-4 mb-10">
@@ -159,46 +159,69 @@
                         </div>
                     </div>
 
-                    <!-- Vista 2: -->
-                    <div x-show="tab === 'BBB'" style="display: none;">
-                        <h1 class="font-black text-4xl mb-6" style="color: #003764;">BBB</h1>
+                    <!-- Vista 2: Mis consultas -->
+                    <div x-show="tab === 'consultas'" style="display: none;" class="flex-1">
+                        <div class="mb-8">
+                            <h1 class="font-black text-4xl mb-2" style="color: #003764;">Mis consultas</h1>
+                            <p class="text-base font-medium text-gray-500">Lista de tus consultas médicas.</p>
                         </div>
+                    </div>
 
-                    <!-- Vista 3: -->
-                    <div x-show="tab === 'CCC'" style="display: none;">
-                        <h1 class="font-black text-4xl mb-6" style="color: #003764;">CCC</h1>
+                    <!-- Vista 3: Mis visitas -->
+                    <div x-show="tab === 'visitas'" style="display: none;" class="flex-1">
+                        <div class="mb-8">
+                            <h1 class="font-black text-4xl mb-2" style="color: #003764;">Mis visitas</h1>
+                            <p class="text-base font-medium text-gray-500">Listado de tus visitas médicas.</p>
                         </div>
+                    </div>
 
-                    <!-- Vista 4: -->
-                    <div x-show="tab === 'DDD'" style="display: none;">
-                        <h1 class="font-black text-4xl mb-6" style="color: #003764;">DDD</h1>
+                    <!-- Vista 4: Mis medicos-->
+                    <div x-show="tab === 'medicos'" style="display: none;" class="flex-1">
+                        <div class="mb-8">
+                            <h1 class="font-black text-4xl mb-2" style="color: #003764;">Mis médicos</h1>
+                            <p class="text-base font-medium text-gray-500">Listado de tus médicos. Administra tus médicos, añade nuevos y consulta su información.</p>
                         </div>
+                    </div>
 
-                    <!-- Vista 5: -->
-                    <div x-show="tab === 'EEE'" style="display: none;">
-                        <h1 class="font-black text-4xl mb-6" style="color: #003764;">EEE</h1>
+                    <!-- Vista 5: Mis medicaciones -->
+                    <div x-show="tab === 'medicaciones'" style="display: none;" class="flex-1">
+                        <div class="mb-8">
+                            <h1 class="font-black text-4xl mb-2" style="color: #003764;">Mis medicaciones</h1>
+                            <p class="text-base font-medium text-gray-500">Medicaciones actuales y pasadas. Podes cargar tus propias medicaciones y gestionarlas desde aquí.</p>
                         </div>
+                    </div>
 
-                    <!-- Vista 6: -->
-                    <div x-show="tab === 'FFF'" style="display: none;">
-                        <h1 class="font-black text-4xl mb-6" style="color: #003764;">FFF</h1>
+                    <!-- Vista 6: Mis resultados -->
+                    <div x-show="tab === 'resultados'" style="display: none;" class="flex-1">
+                        <div class="mb-8">
+                            <h1 class="font-black text-4xl mb-2" style="color: #003764;">Mis resultados</h1>
+                            <p class="text-base font-medium text-gray-500">Tus resultados de estudios realizados. Estos resultados han sido cargados por tu médico en tu historia clínica.</p>
                         </div>
+                    </div>
 
-                    <!-- Vista 7: -->
-                    <div x-show="tab === 'GGG'" style="display: none;">
-                        <h1 class="font-black text-4xl mb-6" style="color: #003764;">GGG</h1>
+                    <!-- Vista 7: Subir archivos -->
+                    <div x-show="tab === 'archivos'" style="display: none;" class="flex-1">
+                        <div class="mb-8">
+                            <h1 class="font-black text-4xl mb-2" style="color: #003764;">Subir archivos</h1>
+                            <p class="text-base font-medium text-gray-500">Sube tus imágenes, estudios y documentos clínicos para compartirlos con tus médicos. Ellos podrán visualizarlos y adjuntarlos a tu historia clínica.</p>
                         </div>
+                    </div>
 
-                    <!-- Vista 8: -->
-                    <div x-show="tab === 'HHH'" style="display: none;">
-                        <h1 class="font-black text-4xl mb-6" style="color: #003764;">HHH</h1>
+                    <!-- Vista 8: Biblioteca médica -->
+                    <div x-show="tab === 'biblioteca'" style="display: none;" class="flex-1">
+                        <div class="mb-8">
+                            <h1 class="font-black text-4xl mb-2" style="color: #003764;">Biblioteca médica</h1>
+                            <p class="text-base font-medium text-gray-500">Documentos que tus médicos y/o consultorios han compartido contigo.</p>
                         </div>
+                    </div>
 
-                    <!-- Vista 9: -->
-                    <div x-show="tab === 'III'" style="display: none;">
-                        <h1 class="font-black text-4xl mb-6" style="color: #003764;">III</h1>
+                    <!-- Vista 9: Notas personales -->
+                    <div x-show="tab === 'notas'" style="display: none;" class="flex-1">
+                        <div class="mb-8">
+                            <h1 class="font-black text-4xl mb-2" style="color: #003764;">Notas personales</h1>
+                            <p class="text-base font-medium text-gray-500">Listado de tus notas personales.</p>
                         </div>
-
+                    </div>
                 </div>
             </main>
         </div>
